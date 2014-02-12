@@ -1,0 +1,25 @@
+Lecture 10
+==========
+Hadoop 
+-----
+* have at least 3 copies of the data on each node so that when the master 
+  tries to load balance there 's more leeway
+* fault tolerance! 
+* shuffle <- group by the keys  
+
+To communicate to Hadoop
+--------
+* any programming language with standard I/O 
+* needs to have a virtual HDFS system
+
+
+Java hadoop code
+-------------
+output of mapper should have the same type as the input of the reducer
+function
+
+
+Pseudo-distributed mode 
+-------------
+* for one machine only 
+  

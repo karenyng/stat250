@@ -1,4 +1,0 @@
-useDynLib(AirlineDelays)
-
-export(getDelayTable)
-export(getDelayTable_thread)

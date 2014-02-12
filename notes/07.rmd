@@ -1,0 +1,68 @@
+Lecture 7
+==========
+Parallel computing as homework ......
+------------------------------
+Can compute distance metric instead to be more interesting
+* MapReduce 
+* threads 
+* have to fix C code or so ...
+
+preprocessor define functions 
+------------------------
+* type independent code....  
+* gcc -Wall # compiler option - give me all the warnings that you can 
+
+* R CMD COMPILE mcmc.c # compile C code  
+* R CMD SHLIB mcmc.c # link the libraries 
+
+If in R package 
+--------------
+useDynLib(mcmc) # in NAMESPACE file   
+
+In R - debug C code 
+-----------
+debug(mcmc)
+trace(mcmc) # both are similar
+
+> n # steps through the code 
+
+How to debug the code 
+-------------------
+* Don't? go old school and add print statements to check all the inputs of C 
+* R -d gdb # ask R to run gdb    
+* where 
+* c # continue 
+* up # step up 
+* print # print 
+* have to turn on the random number generator first runif(1)  
+
+# no random seed in R have to initialize it #.Random.seed  
+* to do sanity check of code:  set same random seed to  to do sanity check
+see if results agree with previous runs  
+
+* .Random.seed = startingSeed # if parallelizing then may have to set different seeds  
+
+paralleling in R 
+----------------
+library(parallel)
+* reference parallel R  # O'Relly book 
+
+Relevant commands 
+---------
+* makecluster
+* unclass
+* clustercall 
+* nextRNGStream # random number generator stream
+* clustercall(cl, library, "MASS", character.only = TRUE) # load library in
+* the entire cluster 
+* lazy evaluation  
+
+Be careful what is being sent to the cluster and what is local 
+---------
+* clusterEvalQ(cl, runif(n)) # this is going to throw runif(n) to the
+ cluster node and 
+* clusterEval(cl, runif, n)  
+* forking model only make copies when the copy changed 
+* clusterApply ?
+* clusterApplyLB # load balancing 
+

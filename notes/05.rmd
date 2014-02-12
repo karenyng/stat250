@@ -1,0 +1,53 @@
+Lecture 5
+========
+
+Requirement for the homework
+-----------------
+* plot for comparing the runtime of the different methods
+* instructions on how to run the code 
+* dependency
+
+different packages 
+-----------------
+* plyr <- make apply functions sane and uniform
+* dplyr <- faster C++ implementation 
+* bigmemory 
+* OpenBLAS <- call Fortran code?
+* ATLAS - BLAS -> takes forever to build and it will optimize the package
+during compilation  
+
+compiler technology???
+--------------------
+* rllvm - use package to generate machine language!
+* clang - allow people to build compiler 
+
+* loop fusion -> fusing a bunch of loops 
+  e.g. sum(log(dnorm(x)) <- has to loop 3 times in R   
+  but if use rllvm 
+
+* just in time compilation -> just tell CPU to split data during computation 
+* RLLVMCOMPILE 
+* FastR -> different implemntation of R on java virtual machine 
+  	* Graal
+	* Truffle 
+	* new R interpreter - pqR 
+* Renjin?
+
+Subsetting R dataframe
+----------------------
+# give it as string don't evaluate it  
+```r{
+e = quote(df[ x < 10 & y > 11 & z > mean(z) ] ) 
+str(e) # this returns the command as how the code will be interpretted  
+e[[1]] # useful for changing R code into other languages, R -> SQL 
+}
+
+Question for myself
+------------
+* difference between uniary operator / binary operator???
+
+Debugger
+-------
+R -d gdb #can run R inside gdb for debugging purposes
+
+

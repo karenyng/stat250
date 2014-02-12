@@ -12,6 +12,8 @@ import org.apache.hadoop.io.LongWritable;
 
 import org.apache.hadoop.mapreduce.Mapper;
 
+// can check the input of Mapper type from the standard
+// org.apache.hadoop.io.Longwritable
 public class ArrivalDelayMapper extends Mapper<LongWritable, Text, IntWritable, IntWritable> {
 
     public void map(LongWritable key, Text value, Context context) 

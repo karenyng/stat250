@@ -1,0 +1,24 @@
+Lecture 2 01/09/2014 
+=========
+Possibilities for assignment: 
+* R - one line at a time 
+* R - one block at a time
+* shell - frequency table, then use R to compute  
+* use Python - one line at a time 
+    * use Python pandas 
+    * use Python numbas?
+* use low level languages either C/C++ or Java
+  * Rcpp can do garbage collecting 
+* Do it in relational database 
+
+Challenge accepted!
+* maybe use Duncan's package......: FastCSVSample (~6 times faster than
+read blocks in R) 
+
+'''{r}
+# make a file connection
+con = open("file", "r") 
+# compute how many lines to skip with delta
+readlines(con, delta[i])[delta[i]]
+'''
+

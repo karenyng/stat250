@@ -1,0 +1,53 @@
+Lecture 11
+===========
+
+Hadoop 
+-------
+there is a difference between the two APIs...
+
+* streaming API?? running count 
+  Hadoop tolerates three errors then shuts every thing down 
+	
+Java API?
+* has better type specification and will be easier to debug
+
+K nearest neighbors (classification) 
+--------------------
+* compute Euclidean distances for every observations 
+* find the smallest distances, assume k = 3  
+* do cross validations  
+* compute distance matrices 
+
+linear regression
+----------------
+* constant variance - if variance is not constant - use weighted least
+  square  
+* independence 
+* normal errors 
+
+GLM (generalize linearize model) 
+-----------
+* iterative fitting 
+* Poisson regression?
+
+Ask if flight is gonna be late or not 
+------------
+* logistical regression ! (for classification)
+* boosting - read 242 notes at
+  <https://docs.google.com/document/d/1_wDTaCmQvWef7F_56amvRSjm3AvmqtN1nXXoMTHz3O0/edit#heading=h.b3y03lgfs9gd> 
+
+Analysis techniques 
+--------
+* discriminant analysis
+* SVM
+* decision trees -   
+
+Computing distances in R - relevant packages 
+----------
+* dist()
+* fast nearest neighbor
+* R part & parties ( for doing partitions)
+
+Quote of the day
+--------
+Think about how to do stuff in parallel / fast

@@ -1,0 +1,29 @@
+Lecture 4 
+========
+
+R commands 
+-----
+* gc() #do garbage collection in R want to turn off garbage collection? 
+
+Why interpretted languages is slower than compiled languages:
+-----
+boxing - the interpretter has to check the syntax and find what the syntax
+means , e.g. what "=" does etc. before it can hand the instructions to the
+CPU for computation
+also the syntax finding is done for every variable / symbol 
+
+compilation bind all the syntax into one big filer so the syntax finding
+part is much faster, also the syntax searching is done only once 
+
+R package
+-----
+tells R to only look for definitions of functions only inside the
+package...
+
+compiler <- compiles R code to make it faster
+
+'''r
+con <- pipe( blah blah blah, "r") 
+something <- readlines(con, rw)
+'''
+

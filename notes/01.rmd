@@ -1,0 +1,34 @@
+Lecture 1
+=========
+* Natural language processing 
+* Hidden Markov model for inferring if a word is a subject / object / verb
+etc.?
+
+Approaches to computing mean of ArrDelay (in mins) for 20+ years of data 
+----
+* doing it exactly 
+    * summation could overflow at some point have to be
+careful! 
+    * if minutes are finite integers - count occurances by histograms 
+
+* sampling from file still requires O(N) runtime since have to traverse
+ through the file 
+    * count # of lines (exclude header)
+    * then uniformly draw n numbers from those lines, 
+    * sort the n numbers in ascending order 
+    * grab the relevant data during traversal (R can grab by columns) 
+
+Shell commands: (242 deja vu....)
+----
+* gunzip -c
+* wc -l  
+* sort
+* uniq -c 
+
+R commands:
+----
+* Don't want to open the file to read for n times 
+* make a connection to the file so R doesn't read from the beginning everytime?
+
+$cons = file(filename)
+have R skip to different lines....... 

@@ -1,0 +1,44 @@
+Lecture 8 
+=========
+"R underscore alloc" R will actually clean memory if you hit control C! 
+If we use call C from R and use malloc <- if you terminate the code,
+there would be memory leak.....
+
+If we have to stick with R ....
+==========================
+read.csv(con, nrow = totallines) <- preallocate memory will avoid having to
+grow memory and speed up the code 
+
+can use read.csv for only extracting one column
+colClasses = (NULL, NULL, NULL, ..., the column that we want, ..., NULL)
+
+*.csv <- globing NOT regular expression!
+
+Shell way of parallelization  
+=====
+grep -v 1987.csv 1988.csv ... 1992.csv | ... > early & 
+grep -v 1993.csv 1988.csv ... 1998.csv | ... > mid & 
+
+where early / mid / late are frequency tables and we can just combine them
+
+But hard to find out if the processes finished or not have to look up the
+PID and possibly check through the top command. 
+
+Java
+====
+pthread
+
+Duncan's answer to hw2 
+=====================
+fs = [list of file names]
+ff = function(fs) for (f in fs) setfreqtable(f)
+cl = makeCluster(10, "FORK")
+tables = clusterApply(cl, ff, f)
+
+if we have a 100 files and we have 10 cores,
+to divide the files in groups for 10 do:
+ClusterSplit(cl, ff) #give a list of character to equally distribute them  
+g = clusterSplit(cl, ff)
+clusterApply(cl, g, f)
+
+clusterApplyLB <- load balancing!

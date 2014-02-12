@@ -1,0 +1,87 @@
+Lecture 08 
+===========
+* alternative approach for the first hw
+online algorithmi -> don't have to store the frequency table 
+
+Duncan's lecture code:
+----------------
+parallelBootstrap.R 
+
+previous commands involving reading in data
+-------------------
+> makeCluster(8, "Fork") <- this command sends both previous command and data to the
+cluster
+> clusterCall(cl, summary ,data) <- sending data again
+# better to use clusterEvalQ instead <- don't execute anything here but
+# send the expression inside the () and ask the remote nodes to execute it  
+
+If the environment is wrong, then the evaluation could be wrong
+
+* order matters -> create data then FORK don't FORK then create .... 
+
+clusterApply
+-----------
+* data parallelism - split data by year then send them to each node 
+* clusterEvalQ <- have R look for data in search path all the way to the parent environment  
+  -> check environment of a function: environment(f)
+* how R look for variables -> look at parent environment...
+
+Other interesting R command
+===========
+apropos() <- find objects by partial name in R 
+debug(function)
+sys.frames() <- call frame 
+R is very lazy ... it holds on to the expression as long as it does not
+have to evaluate a variable unless it needs to 
+
+how R does search -> parent, first package that it loads etc.
+use
+	>search() # to see the search path   
+
+read about "lexical scoping" if something goes weird about how R fetches
+variable always from the global parent environment first...
+See
+http://darrenjw.wordpress.com/2011/11/23/lexical-scope-and-function-closures-in-r/
+for a bizarre example 
+vs 
+dynamical scope
+
+FORK <- put data on shared memory so every node can see it
+if we do clusterapply <- could be creating data for each function....
+
+global variables <- kiss of death for parallel computing.....since we
+don't know which process has modified the global variables
+
+careful how the state of random seed of each node is ....
+wanna set them separately and explicitly -> clusterSetRNGStream
+
+loadbalancing
+-------------
+can have different strategies 
+
+MPI -> if it doesn't work it's wacky -> .....not gonna talk about it?! 
+
+posix threads -> have complete control...
+---------
+* pthread create 
+* pthread join
+* C can just scan across the memory and look at the exact byte that you want
+
+Java
+----
+everything has to be an object , methods cannot exist by themselves 
+
+Questions
+----------
+1. When should I care about using threads for parallel computing? 
+   Threads are used for task parallelization, right?
+-> can share memory among nodes 
+2. When do I care about using stack / heap memory when trying to do
+   parallel computing? Assuming I am using a compiled language.
+   I do want to avoid stack overflow right? but stack is faster.
+3. Do you care about us using a cluster for the assignment? 
+4. In a shell, is there a better / alternative way to run jobs in
+   parallel other than just starting different processes followed with
+   ampersand in the command? 
+5. How is a language being reflective different from having objects
+   being polymorphic? 

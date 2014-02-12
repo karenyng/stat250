@@ -6,7 +6,7 @@
 
 #include "threads.h"
 
-/* Work with each thread  processing multiple files. */
+/* Work with each thread processing multiple files. */
 
 
 void *

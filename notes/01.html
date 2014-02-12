@@ -1,0 +1,33 @@
+<h1 id="lecture-1">Lecture 1</h1>
+<ul>
+<li>Natural language processing</li>
+<li>Hidden Markov model for inferring if a word is a subject / object / verb etc.?</li>
+</ul>
+<h2 id="approaches-to-computing-mean-of-arrdelay-in-mins-for-20-years-of-data">Approaches to computing mean of ArrDelay (in mins) for 20 years of data</h2>
+<ul>
+<li>doing it exactly
+<ul>
+<li>summation could overflow at some point have to be careful!</li>
+<li>if minutes are finite integers - count occurances by histograms</li>
+</ul></li>
+<li>sampling from file still requires O(N) runtime since have to traverse through the file
+<ul>
+<li>count # of lines (exclude header)</li>
+<li>then uniformly draw n numbers from those lines,</li>
+<li>sort the n numbers in ascending order</li>
+<li>grab the relevant data during traversal (R can grab by columns)</li>
+</ul></li>
+</ul>
+<h2 id="shell-commands-242-deja-vu....">Shell commands: (242 deja vu....)</h2>
+<ul>
+<li>gunzip -c</li>
+<li>wc -l<br /></li>
+<li>sort</li>
+<li>uniq</li>
+</ul>
+<h2 id="r-commands">R commands:</h2>
+<ul>
+<li>Don't want to open the file to read for n times</li>
+<li>make a connection to the file so R doesn't read from the beginning everytime?</li>
+</ul>
+<p>$cons = file(filename) have R skip to different lines.......</p>
