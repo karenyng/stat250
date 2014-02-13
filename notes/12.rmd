@@ -1,0 +1,83 @@
+Lecture 12 
+==========
+Mahout 
+* controls hadoop 
+* written in Java 
+* Hbase 
+  * database system in Hadoop that gives access to subsets of big
+  data
+  * column oriented 
+* Hive can behave like a database with stuff like Hbase, HSQL 
+
+Hadoop APIs
+------
+* Java API
+* streaming API 
+  * C 
+  * Python 
+  * R
+
+SQL databases 
+---------
+Postgres - can set it up across several machines and make different
+machines communicate securely and act as one machine 
+* cannot inject user defined function (UDF)
+SQLlite - not parallel 
+
+Pig - declarative language 
+---
+* likes tabs not commas 
+* optional typing (schema) - and pig will figure out what data type it is 
+* semi-colon for each command
+* tuples - bags-collections of tuples or something else? 
+* lazy evaluation 
+* example 
+  * DUMP count # print it to console
+* Projection - get certain subset  
+* nested data types - big win ! much better than regular databases  
+* how to compute distances of each observation from another observation -
+  i.e. distance matrices 
+  * Pig command - CROSS - have to assign every command to an alias  
+* extensible - can have UDF 
+* STORE # save data in Java serialized format  
+
+
+* elastic MapReduce - comes completely configured as Hadoop cluster
+
+Creates a logical plan for how to plan the nodes / do job in parallel etc.
+
+Webscope
+------
+* data is put on S3
+
+topics
+-----
+* SVM 
+* Deep learning 
+* Neural networks 
+* noSQL - fast - individual transactions - scalable ?
+* self organizing maps (SOM) - dimension reduction like PCA 
+* K-means clustering
+
+
+
+Data pipeline
+-----
+  acquire - identify - clean - model - present data 
+
+Lucene
+-----
+* text search engine 
+* Apache project 
+* through API 
+
+Data format
+------
+* JavaScript (JSON)
+* XML 
+
+R - for interactive visualization
+---
+* Shiny package - have an interactive web page with R server  
+* Can produce lattice for a D3 plots 
+
