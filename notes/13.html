@@ -29,21 +29,23 @@
 <li>assume <span class="math">Σ <sub>1</sub> ≠ Σ <sub>2</sub></span></li>
 <li>terms in the likelihood ratio do not cancel</li>
 </ul></li>
-</ul>
-<h2 id="glm">GLM</h2>
+<li>GLM
 <ul>
 <li>Logistic regression</li>
-<li><p>poisson regression</p></li>
+<li>poisson regression</li>
+</ul></li>
 <li>K nearest neighbors<br /></li>
-<li>naive Bayes</li>
+<li>naive Bayes
+<ul>
 <li><span class="math"><em>P</em>(<em>y</em>∣<em>x</em><sub>1</sub>, <em>x</em><sub>2</sub>, . . . ) = <em>P</em>(<em>x</em><sub><em>i</em></sub>∣<em>x</em><sub><em>j</em> ≠ <em>i</em></sub>, <em>y</em>, . . . )<em>P</em>(<em>x</em><sub><em>i</em> + 1</sub>∣<em>y</em>, <em>x</em><sub><em>j</em> ≠ <em>i</em> + 1</sub>, . . . ). . . </span> assume independence between parameters<br /></li>
+</ul></li>
 <li>neural networks</li>
-<li><p>non-naive Bayes (have to know the joint distribution)</p></li>
+<li>non-naive Bayes (have to know the joint distribution)</li>
 </ul>
 <h2 id="mcmc">MCMC</h2>
 <ul>
 <li>sampling from posterior / complicated distributions</li>
-<li>other similar techniques - importance / acception-rejection sampling, inverse CDF</li>
+<li>other similar techniques - importance / acceptance-rejection sampling, inverse CDF</li>
 </ul>
 <p>most are similar with different loss functions</p>
 <h2 id="how-to-cut-between-two-populations">how to cut between two populations</h2>
@@ -58,8 +60,8 @@
 <li>margins between several choices of cut-off lines or what 's called support<br /></li>
 <li>convex optimization - no local minima / maxima</li>
 <li>optimize the <span class="math"><em>β</em><sub><em>i</em></sub></span> for the margin (distances between the two populations) to be as wide as possible<br /></li>
-<li><p>distances (<span class="math"><em>s⃗</em></span>) of point p to the hyperplane ( <span class="math"><em>β⃗</em></span> ) <br /><span class="math"><em>s⃗</em> = <em>p⃗</em> × <em>β⃗</em> / ∣<em>β⃗</em>∣</span><br /> &lt;- I believe Duncan meant cross product in the numerator</p></li>
-<li>constraint 1 : but we want to get rid of the magnitude of <span class="math">∣∣<em>β</em>∣∣</span> and maximize that</li>
+<li><p>distances (<span class="math"><em>s⃗</em></span>) of point p to the hyperplane (defined uniquely by its normal vector <span class="math"><em>β⃗</em></span> ) <br /><span class="math"><em>s⃗</em> = <em>p⃗</em> ⋅ <em>β⃗</em> / ∣<em>β⃗</em>∣</span><br /></p></li>
+<li>constraint 1 : but we want to get rid of the magnitude of <span class="math">∣<em>β⃗</em>∣</span> and maximize that</li>
 <li><p>constraint 2: <span class="math">∑ <em>β</em><sub><em>i</em></sub><sup>2</sup> = 1</span></p></li>
 </ul>
 <p>Optimize margin M such that</p>
@@ -77,7 +79,7 @@
 <li>do cross validation</li>
 <li>this is called bias - variance trade-off</li>
 </ul>
-<h2 id="redo-problem-with-support-vector-something-machine-classifier">Redo problem with Support Vector Something (Machine, classifier)</h2>
+<h2 id="redo-problem-with-support-vector-something-machine-classifier">Redo problem with Support Vector Something (Machine, classifier?)</h2>
 <p>this time - maximize margins and allow a few points to be on the wrong side of the line if <span class="math"><em>ε</em> &gt; 1</span> - the points will be on the wrong side</p>
 <ul>
 <li>KNN needs to keep all data around - SVM doesn't have to</li>

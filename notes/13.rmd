@@ -33,15 +33,13 @@ Classifier techniques
   	* assume $\Sigma_1 \neq \Sigma_2$ 
 	* terms in the likelihood ratio do not cancel  
 
-GLM
----
-* Logistic regression 
-* poisson regression
+* GLM
+	* Logistic regression 
+	* poisson regression
 
-  	
 * K nearest neighbors  
 * naive Bayes 
-   * $P(y|x_1, x_2, ...) = P(x_i| x_{j\neq i}, y,...) P(x_{i+1} | y, x_{j\neq i+1}, ...)...$ assume independence
+	* $P(y|x_1, x_2, ...) = P(x_i| x_{j\neq i}, y,...) P(x_{i+1} | y, x_{j\neq i+1}, ...)...$ assume independence
      between parameters  
 * neural networks 
 * non-naive Bayes (have to know the joint distribution) 
@@ -49,7 +47,7 @@ GLM
 MCMC
 ----
 * sampling from posterior / complicated distributions 
-* other similar techniques - importance / acception-rejection sampling,
+* other similar techniques - importance / acceptance-rejection sampling,
   inverse CDF 
 
 most are similar with different loss functions 
@@ -69,10 +67,11 @@ Maximum marginal problem
 * convex optimization - no local minima / maxima 
 * optimize the $\beta_i$ for the margin (distances between the two
   populations) to be as wide as possible  
-* distances ($\vec{s}$) of point p to the hyperplane ( $\vec{\beta}$ )
-  $$\vec{s} = \vec{p} \times \vec{\beta} / |\vec{\beta}|$$ <- I believe Duncan meant cross product in the numerator 
+* distances ($\vec{s}$) of point p to the hyperplane (defined uniquely by
+its normal vector $\vec{\beta}$ )
+  $$\vec{s} = \vec{p} \cdot \vec{\beta} / |\vec{\beta}|$$  
   
-* constraint 1 : but we want to get rid of the magnitude of $||\beta||$ and maximize that 
+* constraint 1 : but we want to get rid of the magnitude of $|\vec{\beta}|$ and maximize that 
 * constraint 2: $\sum \beta_i^2 = 1$ 
 
 
