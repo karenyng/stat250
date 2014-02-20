@@ -1,4 +1,4 @@
-Lecture 1
+Lecture 1 - Intro
 =========
 * Natural language processing 
 * Hidden Markov model for inferring if a word is a subject / object / verb

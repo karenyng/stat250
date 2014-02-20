@@ -1,0 +1,109 @@
+Lecture 14  - Web Scraping 
+=========
+Next homework - machine learning stuff 
+<http://www.kaggle.com/c/predict-closed-questions-on-stack-overflow>
+
+How to download data to remote machine with login screen
+-----------------
+* cookie - signature of the user -   
+get data
+<http://www.kaggle.com/c/predict-closed-questions-on-stack-overflow/data>
+open developer tools on firefox and examine the cookie information - then
+copy the cookie over to remote machine then can use wget 
+
+curl -v -L --cookie 'cookie' 'linkLocationForloginToGetdata' > dataFileName
+
+How to unzip 7zip file
+-----------
+use the command 
+	$7z 
+or what 's called p7zip when you try to download it 
+
+StackOverFlow questions - not a real question? not constructive? etc.  
+-------
+* should content of the question tell you if it is a valid question or
+* not? NLP! 
+* stemming - identify words that are the same but in different tense etc.
+* can do Naive Bayes 
+* also have to get rid of the markdown symbols - knitr might be able to help 
+
+Open NLP
+------
+* Java library for doing NLP
+* can call Java code within R 
+
+How to read html table from the web
+-------
+In R, use the function 
+* readHTMLTable(URL, ) from the XML package 
+There is a column class for striping the data in the proper type  
+If there is an annoying comma separating the numbers every 3 digit, 
+use 
+* gsub() 
+
+html tags 
+-------
+* th - table headers 
+* tr - table row 
+* td - table data 
+
+Commands 
+--------
+* r = xmlRoot(doc)
+* xmlName(r) <- tells you what type of file it is 
+Other relevant packages: 
+----------
+* RHTMLForms 
+* RCurl 
+* RJSON
+* RJSONIO
+
+Webscraping - How to find a table from a html file 
+-------
+  #XPATH - a path through the html tree  
+* xmlName()
+* xmlSize()
+* xmlSApply()
+
+Want to get the ahref tags so that we can pull some links for downloading
+the 7zip data file from stackoverflow website
+* getNodeSet(filename, "//a[start-with, [ahref]' and ancestor::table]") <- not exact syntax  
+* can place condition in a sideway direction, upwards the html tree-like
+structure etc. 
+
+* a table in a website could be styled by a CSS 
+
+Parse a html document 
+> page <- htmlParse(URL)
+
+get javascript code from the parsed document  
+jscode = getNodeSet(page, "//script")
+
+jscode - 2 types  
+* inline code  
+* has to be downloaded from server 
+
+uuid - universally unique id 
+
+RCurl function 
+* getURLContent(URL, binary = FALSE, verbose = TRUE)
+
+
+HTTP 1.1 dialect code for using RCurl
+-----
+server response 
+200 -succeeded
+404 - not found 
+500 - server internal error 
+300 - we saw it ...
+
+
+R commands 
+----------
+If we have some txt string read.csv can read from a connection 
+> read.csv(textConnection(txt))
+
+Recommended Reading
+-------
+* XPATH O'relly book - 2 chpts relevant
+* reader.R from stat250 repository 

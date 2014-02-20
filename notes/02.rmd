@@ -1,4 +1,4 @@
-Lecture 2 01/09/2014 
+Lecture 2 01/09/2014 - read large amount of CSV 
 =========
 Possibilities for assignment: 
 * R - one line at a time 
