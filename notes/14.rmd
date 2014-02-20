@@ -107,3 +107,7 @@ Recommended Reading
 -------
 * XPATH O'relly book - 2 chpts relevant
 * reader.R from stat250 repository 
+
+Most of the lecture can be found in chpt 1 of 
+* XML and Web Technologies for Data Science with R
+<http://www.springer.com/statistics/computational+statistics/book/978-1-4614-7899-7>
