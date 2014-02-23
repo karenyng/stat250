@@ -114,7 +114,7 @@ Can rewrite $f(x_i) = \beta + \sum_i^N \alpha_i <x_i x_j>$ where $<>$
 represents the inner product 
 
 *  $\alpha_i = 0$ for a lot of i 
-we need to know where $\alpha_i \neq 0 $
+we need to know where $\alpha_i \neq 0$
 
 * non zero $\alpha_i$
 correspond to the actual support vectors!
