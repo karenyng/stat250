@@ -2,19 +2,23 @@ Lecture 13
 ==========
 Version control for open source packages 
 ------------
-1.2.3 
-major.minor.bugFix
+usually named 1.2.3 
+which stands for 
 
-* major 
-  * version 0 code may or may not work in version 1 - developers reserve the right
+	 majorVersion.minorVersion.bugFix
+
+* majorVersion 
+	* version 0 code may or may not work in version 1 - developers reserve the right
 to break older version of the code   
-  * there could have be a major API change 
+	* there could have be a major API change 
 
-* minor - new features added along the way  
+* minorVersion - new features added along the way  
+
+* bugFix - number of bug fixes 
 
 Punchline for SVM
 ---------
-* Kernels / distances $latex x_i, x_j$   
+* Kernels / distances $x_i, x_j$   
 
 Maximal Marginal Classifier 
 -----------
@@ -24,41 +28,38 @@ Classifier techniques
 * random forest - classification trees or CART - decision trees  
 * linear discriminant analysis (p.106 elements of statistical learning) 
 	* assume multinormals and compute likelihood ratios of two populations  
-	* assume sigma1 = sigma2 <- where it is linear  
+	* assume $\Sigma_1 = \Sigma_2$ <- linear  
 * quadratic discriminant analysis
-  	* assume sigma1 != sigma2 
+  	* assume $\Sigma_1 \neq \Sigma_2$ 
 	* terms in the likelihood ratio do not cancel  
 
-GLM
----
-* Logistic regression 
-* poisson regression
+* GLM
+	* Logistic regression 
+	* poisson regression
 
-  	
 * K nearest neighbors  
 * naive Bayes 
-   * $P(y|x_1, x_2, ...) = P(x_i| x_{i+1}, y ...)$ assume independence
+	* $P(y|x_1, x_2, ...) = P(x_i| x_{j\neq i}, y,...) P(x_{i+1} | y, x_{j\neq i+1}, ...)...$ assume independence
      between parameters  
 * neural networks 
-* non-naive Bayes (has to know the joint distribution) 
+* non-naive Bayes (have to know the joint distribution) 
 
 MCMC
 ----
 * sampling from posterior / complicated distributions 
-* other similar techniques - importance / acception-rejection sampling,
+* other similar techniques - importance / acceptance-rejection sampling,
   inverse CDF 
 
 most are similar with different loss functions 
 
 how to cut between two populations
 ------
-p-1 hyperplane 
-p-2 line 
-$ 0 = \sum_{i=1}^N \beta_i x_i + \beta_0 $ 
-or 
-$ 0 = a + b~x$
+define the cut by:
 
-Support Vector Something (Machine, classifier)
+* parametrization 1 hyperplane: $0 = \sum_{i=1}^N \beta_i x_i + \beta_0$ or 
+* parametrization 2 line: $0 = a + b~x$
+
+Maximum marginal problem 
 -------------
 * loss function of SVM is very similar to logistic regression 
 * margins between several choices of cut-off lines or what 's called
@@ -66,70 +67,82 @@ Support Vector Something (Machine, classifier)
 * convex optimization - no local minima / maxima 
 * optimize the $\beta_i$ for the margin (distances between the two
   populations) to be as wide as possible  
-* distances of point p to the hyperplane defined by $beta$ 
-  $\vec{s} = p*\beta / ||\beta|| $ 
-* constraint 1 : but we want to get rid of the magnitude of $||\beta||$ and maximize that 
+* distances ($\vec{s}$) of point p to the hyperplane (defined uniquely by
+its normal vector $\vec{\beta}$ )
+  $$\vec{s} = \vec{p} \cdot \vec{\beta} / |\vec{\beta}|$$  
+  
+* constraint 1 : but we want to get rid of the magnitude of $|\vec{\beta}|$ and maximize that 
 * constraint 2: $\sum \beta_i^2 = 1$ 
 
-AKA Maximum marginal problem - also a convex optimization problem
-Optimize M such that $y_i (\sum_{i=1} \beta_i x_i + x_0) \geq M $
 
-$$f(x) = (\sum_{i=1} \beta_i x_i + x_0) > 0 y = 1 $$ 
-$$f(x) = (\sum_{i=1} \beta_i x_i + x_0) < 0 y = -1 $$ 
+Optimize margin M such that 
 
-$y_i f(x_i) \geq M(1-\episilon_i)$
-where $\epsilon_i > 0 $ i = 1,...,n 
-$ \sum_i^n \epsilon < constant$ constant is a tuning parameter  
+$y_i (\sum_{i=1} \beta_i x_i + \beta_0) \geq M $
+
+Or rewrite the above eqn to allow wiggle room
+$f(x) = (\sum_{i=1} \beta_i x_i + \beta_0) > 0 $  y = 1  
+
+$f(x) = (\sum_{i=1} \beta_i x_i + \beta_0) < 0 $ y = -1 
+(The way I write the summation seems a little weird ...)
+
+$y_i~f(x_i) \geq M(1-\epsilon_i)$
+
+where $\epsilon_i > 0$ for i = 1,...,n 
+$\sum_i^n \epsilon_i < constant$ 
+where the constant is a tuning parameter.  
 if want clean separation make constant = 0 
 or if we are more tolerant , make constant large 
+
 * every point within the margin are supports  
 
-two steps to find tuning parameter 
+steps to find tuning parameter 
+----------------
 * optimize it out  - may overfit 
 * do cross validation 
-* bias - variance trade-off
+* this is called bias - variance trade-off
 
-if $epsilon > 1 - the points will be on the wrong side$
 
-Redo problem
+Redo problem with Support Vector Something (Machine, classifier?)
 ------------
 this time - maximize margins and allow a few points to be on
 the wrong side of the line
+if $\epsilon > 1$ - the points will be on the wrong side
 
-KNN
----
-* needs to keep all data around - SVM doesn't have to  
+* KNN needs to keep all data around - SVM doesn't have to  
 
-SVM
----
-Can rewrite $f(x_i) = \beta + \sum_i^N \alpha_i <x_i x_j> $ where $<>$
+Can rewrite $f(x_i) = \beta + \sum_i^N \alpha_i <x_i x_j>$ where $<>$
 represents the inner product 
-* $\alpha_i = 0 $ for a lot of i 
-we need to know where $\alpha_i \neq 0 $ for the actual support vectors!
+
+*  $\alpha_i = 0$ for a lot of i 
+we need to know where $\alpha_i \neq 0 $
+
+* non zero $\alpha_i$
+correspond to the actual support vectors!
 can get the support vectors when we do optimization.
 
 * can replace the inner product metric with more complicated ones 
-  e.g. $K(x_i, x_j) = (1 + \sum x_i x_j)^d $
+  e.g. $K(x_i, x_j) = (1 + \sum x_i x_j)^d$
 * multi-dimensional scaling - dimension reduction 
 
 Radial basis - $exp(-d(|x - x_i|^2)$
 
-classify K classes 
+how to generalize to classify K classes 
 --------
 assume ABCD... classes 
 
-approach 1) only do ABD, C 
-then repeat SVM for ABD 
-greedy algorithm
+* approach 1) 
+  	* only use SVM to classify into two classes, grouping ABD then C 
+	* then repeat SVM for ABD 
+	* greedy algorithm
+	* one-versus-all-the-others.....
 
-one-versus-all-the-others.....
-
-approach 2) A, BCD or B, ACD or C, BAD etc. then take a vote not greedy  
-pick largest $latex f_{\beta}(x)$
-
-ensemble approach 
-
-can weight the votes 
+* approach 2) 
+  	* A, BCD or B, ACD or C, BAD etc. 
+	* can take a vote
+	* or pick largest $f_{\beta}(x)$
+	* ensemble approach 
+	* not greedy  
+	* can also weight the votes 
 
 Recommended reading
 ---------
