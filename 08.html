@@ -1,0 +1,46 @@
+<h1 id="lecture-08">Lecture 08</h1>
+<ul>
+<li>alternative approach for the first hw online algorithmi -&gt; don't have to store the frequency table</li>
+</ul>
+<h2 id="duncans-lecture-code">Duncan's lecture code:</h2>
+<p>parallelBootstrap.R</p>
+<h2 id="previous-commands-involving-reading-in-data">previous commands involving reading in data</h2>
+<blockquote>
+<p>makeCluster(8, &quot;Fork&quot;) &lt;- this command sends both previous command and data to the cluster clusterCall(cl, summary ,data) &lt;- sending data again # better to use clusterEvalQ instead &lt;- don't execute anything here but # send the expression inside the () and ask the remote nodes to execute it</p>
+</blockquote>
+<p>If the environment is wrong, then the evaluation could be wrong</p>
+<ul>
+<li>order matters -&gt; create data then FORK don't FORK then create ....</li>
+</ul>
+<h2 id="clusterapply">clusterApply</h2>
+<ul>
+<li>data parallelism - split data by year then send them to each node</li>
+<li>clusterEvalQ &lt;- have R look for data in search path all the way to the parent environment<br /> -&gt; check environment of a function: environment(f)</li>
+<li>how R look for variables -&gt; look at parent environment...</li>
+</ul>
+<h1 id="other-interesting-r-command">Other interesting R command</h1>
+<p>apropos() &lt;- find objects by partial name in R debug(function) sys.frames() &lt;- call frame R is very lazy ... it holds on to the expression as long as it does not have to evaluate a variable unless it needs to</p>
+<p>how R does search -&gt; parent, first package that it loads etc. use &gt;search() # to see the search path</p>
+<p>read about &quot;lexical scoping&quot; if something goes weird about how R fetches variable always from the global parent environment first... See http://darrenjw.wordpress.com/2011/11/23/lexical-scope-and-function-closures-in-r/ for a bizarre example vs dynamical scope</p>
+<p>FORK &lt;- put data on shared memory so every node can see it if we do clusterapply &lt;- could be creating data for each function....</p>
+<p>global variables &lt;- kiss of death for parallel computing.....since we don't know which process has modified the global variables</p>
+<p>careful how the state of random seed of each node is .... wanna set them separately and explicitly -&gt; clusterSetRNGStream</p>
+<h2 id="loadbalancing">loadbalancing</h2>
+<p>can have different strategies</p>
+<p>MPI -&gt; if it doesn't work it's wacky -&gt; .....not gonna talk about it?!</p>
+<h2 id="posix-threads---have-complete-control...">posix threads -&gt; have complete control...</h2>
+<ul>
+<li>pthread create</li>
+<li>pthread join</li>
+<li>C can just scan across the memory and look at the exact byte that you want</li>
+</ul>
+<h2 id="java">Java</h2>
+<p>everything has to be an object , methods cannot exist by themselves</p>
+<h2 id="questions">Questions</h2>
+<ol style="list-style-type: decimal">
+<li>When should I care about using threads for parallel computing? Threads are used for task parallelization, right? -&gt; can share memory among nodes</li>
+<li>When do I care about using stack / heap memory when trying to do parallel computing? Assuming I am using a compiled language. I do want to avoid stack overflow right? but stack is faster.</li>
+<li>Do you care about us using a cluster for the assignment?</li>
+<li>In a shell, is there a better / alternative way to run jobs in parallel other than just starting different processes followed with ampersand in the command?</li>
+<li>How is a language being reflective different from having objects being polymorphic?</li>
+</ol>

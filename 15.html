@@ -1,0 +1,94 @@
+<h1 id="lecture-15">Lecture 15</h1>
+<ul>
+<li><p>boosting - can have many features / choices</p></li>
+<li>classification tree is harder to implement than regression trees
+<ul>
+<li>needs to have a measure of impurity
+<ul>
+<li>Gini coefficient</li>
+<li>Entropy</li>
+</ul></li>
+<li>Random forest
+<ul>
+<li>relatively easy</li>
+<li>implement a stump<br /></li>
+<li>also only use a subset of the features</li>
+</ul></li>
+</ul></li>
+<li>Boosting
+<ul>
+<li>rpart(formula, data, weights)</li>
+<li><br /><span class="math">∑ <sub><em>i</em></sub><em>w</em><sub><em>i</em></sub> = 1 / <em>n</em></span><br /></li>
+</ul></li>
+</ul>
+<h2 id="stackoverflow-hw">StackOverFlow hw</h2>
+<ul>
+<li>use NLP to process the questions to process them into variables
+<ul>
+<li>ignore case sensitivity</li>
+<li>ignore tense sensitivity - stemming<br /></li>
+<li>some part of speech (POS) should be more important than the others
+<ul>
+<li>seems to be hard to understand the context</li>
+<li>proper noun vs noun?!?!</li>
+</ul></li>
+<li>how to treat punctuation<br /></li>
+<li>remove stop words - a / the / is after detecting the rest of the part of speech</li>
+<li>get subsets of word so &quot;not something&quot; is one pair</li>
+<li>get bag of words from the question ...</li>
+</ul></li>
+<li>may not be good idea to do sampling - may sample only 2% from 6% of closed sample</li>
+<li>look at the 6%</li>
+<li>user reputation cannot go below 1</li>
+<li>normalize the post or find
+<ul>
+<li>percent of # of stop words</li>
+<li>amount of code</li>
+</ul></li>
+<li>look at conditional probability
+<ul>
+<li>word | closed - naive Bayes approach<br /><br /><span class="math"><em>P</em>(<em>c</em><em>l</em><em>o</em><em>s</em><em>e</em><em>d</em>∣<em>w</em><sub>1</sub>, <em>w</em><sub>2</sub>, . . . , <em>w</em><sub><em>n</em></sub>) ∝ <em>P</em>(<em>w</em><sub>1</sub>, <em>w</em><sub>2</sub>, . . . , <em>w</em><sub><em>n</em></sub>∣<em>c</em><em>l</em><em>o</em><em>s</em><em>e</em><em>d</em>)<em>P</em>(<em>c</em><em>l</em><em>o</em><em>s</em><em>e</em><em>d</em>)</span><br /> <br /><span class="math"> = <em>P</em>(<em>w</em><sub>1</sub>∣<em>c</em><em>l</em><em>o</em><em>s</em><em>e</em><em>d</em>)<em>P</em>(<em>w</em><sub>2</sub>∣<em>c</em><em>l</em><em>o</em><em>s</em><em>e</em><em>d</em>). . . <em>P</em>(<em>w</em><sub>3</sub>∣<em>c</em><em>l</em><em>o</em><em>s</em><em>e</em><em>d</em>). . . </span><br /> assuming independence or <br /><span class="math"><em>P</em>(<em>o</em><em>p</em><em>e</em><em>n</em>∣<em>w</em><sub>1</sub>, <em>w</em><sub>2</sub>, . . . , <em>w</em><sub><em>n</em></sub>) ∝ <em>P</em>(<em>w</em><sub>1</sub>, <em>w</em><sub>2</sub>, . . . , <em>w</em><sub><em>n</em></sub>∣<em>o</em><em>p</em><em>e</em><em>n</em>)<em>P</em>(<em>o</em><em>p</em><em>e</em><em>n</em>)</span><br /> The evidence for both formulae should be the same for comparison purposes????</li>
+</ul></li>
+</ul>
+<h2 id="measure-the-distance-of-different-questions---could-use-knn">measure the distance of different questions - could use KNN</h2>
+<ul>
+<li>use term frequency (TF) to</li>
+<li>use inverse document frequency (IDF)</li>
+<li>tags on the questions - and see if they are relevant<br /></li>
+<li>also can pull upvote statistics - full dump 36G StackOverFlow in xml</li>
+</ul>
+<h2 id="xml">XML</h2>
+<ul>
+<li><p>entities - weird words</p>
+<pre class="sourceCode r"><code class="sourceCode r">doc =<span class="st"> </span><span class="kw">xmlParse</span>(<span class="st">&quot;users.xml&quot;</span>)
+<span class="kw">xmlToDataFrame</span>()</code></pre></li>
+<li>getNodeSet() - @ is the attribute<br /></li>
+<li>.Last.value &lt;- R stores the last variable</li>
+<li><p>do it in parallel?</p></li>
+</ul>
+<p>Careful not to overfit!</p>
+<h2 id="r-package">R package</h2>
+<ul>
+<li>rpart</li>
+<li>if slow, use
+<ul>
+<li>parallelR</li>
+<li>Mahout</li>
+<li>or rewrite part of XML in C</li>
+</ul></li>
+<li>288 s to get 12 GB of XML files on Hilbert</li>
+<li>write C code to sweep over all the nodes separated by <tags></tags> or attributes<br /></li>
+<li>sometimes cannot read one line at a time - have to cut out each node<br /></li>
+<li>use Simple API for XML - use SAX in order cut out each node<br /></li>
+<li>event driven programming - asynchronous programming</li>
+</ul>
+<p>differences between ML and statistics * no model for ML * not fitting a model * not asking why</p>
+<p>Possible solution to dealing with [orange tree problem] (https://docs.google.com/presentation/d/1Xad89ZfGzlSk_JFERzp9RQQUt26YACoao97ir15epb0/edit#slide=id.g1c73e4298_026) logistical regression - classification multinomial logistic regression with 3 response variables</p>
+<p>for random forest: use out of bag samples for doing cross validation !</p>
+<p>depends on how the number of parameters is for a certain don't know the parametrization</p>
+<p>why not just average the outputs of all 3 methods?! * see what each method misclassifies * see why each method misses the variables - tell you which bit would be hard to predict</p>
+<h2 id="data-exploration---eyeball-the-data">data exploration - eyeball the data</h2>
+<ul>
+<li>plotting and plotting to detect structure</li>
+<li>do projection pursue</li>
+</ul>

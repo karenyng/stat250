@@ -1,0 +1,36 @@
+<h1 id="lecture-3">Lecture 3</h1>
+<h2 id="shell-command">Shell command</h2>
+<ul>
+<li>grep -v #inverse select a string</li>
+</ul>
+<h2 id="r-command">R command</h2>
+<ul>
+<li>table(..., useNA = &quot;ifonly&quot;) # can tell R not to use NA</li>
+</ul>
+<h2 id="r-code">R code:</h2>
+<p><code>{r} delay &lt;- system(&quot;gunzip -c 1987.csv | grep -v | &quot;) tt = table(delays, useNA = &quot;ifany&quot;)</code></p>
+<h1 id="inheritance-in-r-for-s3">inheritance in R for S3</h1>
+<h1 id="order-really-matters-for-assigning-the-class-labels">order really matters for assigning the class labels</h1>
+<h1 id="s4-has-more-advanced-class-design">S4 has more advanced class design</h1>
+<p>class(tt) = c(&quot;IntegerFrequencyTable&quot;, &quot;DiscreteFrequencyTable&quot;, &quot;table&quot;)</p>
+<h1 id="make-r-package-from-the-shell">make R package from the shell</h1>
+<h1 id="can-actually-use-package.skeleton-or-something-similar">can actually use package.skeleton or something similar</h1>
+mkdir
+<dir>
+<p>vim DESCRIPTION # this is for R to read</p>
+<p>Title: Package: Author: Description: License: Maintainer: Version:</p>
+<p>vim NAMESPACE # also need to specify namespace - S3 for simplicity</p>
+<h1 id="r-manual---how-to-write-extension">R Manual - how to write extension</h1>
+<h1 id="mean-of-the-year-1987.csv">mean of the year 1987.csv</h1>
+<p>9.446699</p>
+<h2 id="database">Database</h2>
+<ul>
+<li>SQL and Postgre (open source version of Postgre)</li>
+</ul>
+<p>SHELL # if you do not have root access then tell configure to put everything in # local directory ./configure --prefix=$HOME/local<br />make make install</p>
+<p>~/psql # the language of sql</p>
+<p>make make install</p>
+<p>create SCHEMA</p>
+<p>bunzip</p>
+<h1 id="sql-knows-how-to-do-group-by">sql knows how to do group by</h1>
+<h1 id="can-pipe-the-bz-command-out-to-for-bunzip-before-using-sql-to-build">can pipe the bz command out to for bunzip before using sql to build</h1>

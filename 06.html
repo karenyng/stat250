@@ -1,0 +1,27 @@
+<h1 id="lecture-6">Lecture 6</h1>
+<h2 id="how-to-sample-a-pdf">How to sample a PDF</h2>
+<ul>
+<li><p>inverse CDF sampling e.g. sample some PDF from 1 to 12, have 1 to 12 on y axis, have the CDF on the x-axis, uniformly sample y values -&gt; map to some x-values</p></li>
+<li><p>acception - rejection sampling</p></li>
+</ul>
+<p>Can do MLE to find what's the best place to start MCMC</p>
+<ul>
+<li>profiles the R code and see where the bottle neck is then write C code to speed only the slow bits up</li>
+</ul>
+<h2 id="code-up-on-stat250-mcmc-github">Code up on Stat250 MCMC github</h2>
+<ul>
+<li>write skeleton first then fill in details</li>
+<li><p>double * int &lt;- may complain depending on the compiler, so better type casting the variables as double first</p></li>
+<li><p>1 in R is 2 in C for the index??????</p></li>
+<li><p>tell compiler where to find rmath</p></li>
+<li>.RCall ? .C ?</li>
+<li>R CMD COMPILE inclass.c #then R will tell gcc how to find the Rmath library</li>
+<li>n[0] # when n is a pointer, then you have to do n[0] in order to find the value??</li>
+<li><p>the shell can only see the function call in main()</p></li>
+</ul>
+<h2 id="relevant-reading">Relevant reading</h2>
+<ul>
+<li>Clearer explanation on how to interface R with C / C++ ch 4 &amp; 11 of software for data analysis programming with R by John Chambers</li>
+<li>p. 85 - 92 - Writing R extensions by the R Core Team</li>
+<li>How to register C functions with Duncan's package http://www.omegahat.org/RGCCTranslationUnit/</li>
+</ul>

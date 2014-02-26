@@ -1,0 +1,39 @@
+<h1 id="lecture-5">Lecture 5</h1>
+<h2 id="requirement-for-the-homework">Requirement for the homework</h2>
+<ul>
+<li>plot for comparing the runtime of the different methods</li>
+<li>instructions on how to run the code</li>
+<li>dependency</li>
+</ul>
+<h2 id="different-packages">different packages</h2>
+<ul>
+<li>plyr &lt;- make apply functions sane and uniform</li>
+<li>dplyr &lt;- faster C++ implementation</li>
+<li>bigmemory</li>
+<li>OpenBLAS &lt;- call Fortran code?</li>
+<li>ATLAS - BLAS -&gt; takes forever to build and it will optimize the package during compilation</li>
+</ul>
+<h2 id="compiler-technology">compiler technology???</h2>
+<ul>
+<li>rllvm - use package to generate machine language!</li>
+<li><p>clang - allow people to build compiler</p></li>
+<li><p>loop fusion -&gt; fusing a bunch of loops e.g. sum(log(dnorm(x)) &lt;- has to loop 3 times in R<br /> but if use rllvm</p></li>
+<li>just in time compilation -&gt; just tell CPU to split data during computation</li>
+<li>RLLVMCOMPILE</li>
+<li>FastR -&gt; different implemntation of R on java virtual machine
+<ul>
+<li>Graal</li>
+<li>Truffle</li>
+<li>new R interpreter - pqR</li>
+</ul></li>
+<li><p>Renjin?</p></li>
+</ul>
+<h2 id="subsetting-r-dataframe">Subsetting R dataframe</h2>
+<h1 id="give-it-as-string-dont-evaluate-it">give it as string don't evaluate it</h1>
+<p>```r{ e = quote(df[ x &lt; 10 &amp; y &gt; 11 &amp; z &gt; mean(z) ] ) str(e) # this returns the command as how the code will be interpretted<br />e[[1]] # useful for changing R code into other languages, R -&gt; SQL }</p>
+<h2 id="question-for-myself">Question for myself</h2>
+<ul>
+<li>difference between uniary operator / binary operator???</li>
+</ul>
+<h2 id="debugger">Debugger</h2>
+<p>R -d gdb #can run R inside gdb for debugging purposes</p>

@@ -1,0 +1,122 @@
+<h1 id="lecture-13">Lecture 13</h1>
+<h2 id="version-control-for-open-source-packages">Version control for open source packages</h2>
+<p>usually named 1.2.3 which stands for</p>
+<pre><code> majorVersion.minorVersion.bugFix</code></pre>
+<ul>
+<li>majorVersion
+<ul>
+<li>version 0 code may or may not work in version 1 - developers reserve the right to break older version of the code<br /></li>
+<li>there could have be a major API change</li>
+</ul></li>
+<li><p>minorVersion - new features added along the way</p></li>
+<li><p>bugFix - number of bug fixes</p></li>
+</ul>
+<h2 id="punchline-for-svm">Punchline for SVM</h2>
+<ul>
+<li>Kernels / distances <span class="math"><em>x</em><sub><em>i</em></sub>, <em>x</em><sub><em>j</em></sub></span></li>
+</ul>
+<h2 id="maximal-marginal-classifier">Maximal Marginal Classifier</h2>
+<h2 id="classifier-techniques">Classifier techniques</h2>
+<ul>
+<li>random forest - classification trees or CART - decision trees<br /></li>
+<li>linear discriminant analysis (p.106 elements of statistical learning)
+<ul>
+<li>assume multinormals and compute likelihood ratios of two populations<br /></li>
+<li>assume <span class="math">Σ <sub>1</sub> = Σ <sub>2</sub></span> &lt;- linear<br /></li>
+</ul></li>
+<li>quadratic discriminant analysis
+<ul>
+<li>assume <span class="math">Σ <sub>1</sub> ≠ Σ <sub>2</sub></span></li>
+<li>terms in the likelihood ratio do not cancel</li>
+</ul></li>
+<li>GLM
+<ul>
+<li>Logistic regression</li>
+<li>poisson regression</li>
+</ul></li>
+<li>K nearest neighbors<br /></li>
+<li>naive Bayes
+<ul>
+<li><span class="math"><em>P</em>(<em>y</em>∣<em>x</em><sub>1</sub>, <em>x</em><sub>2</sub>, . . . ) = <em>P</em>(<em>x</em><sub><em>i</em></sub>∣<em>x</em><sub><em>j</em> ≠ <em>i</em></sub>, <em>y</em>, . . . )<em>P</em>(<em>x</em><sub><em>i</em> + 1</sub>∣<em>y</em>, <em>x</em><sub><em>j</em> ≠ <em>i</em> + 1</sub>, . . . ). . . </span> assume independence between parameters<br /></li>
+</ul></li>
+<li>neural networks</li>
+<li>non-naive Bayes (have to know the joint distribution)</li>
+</ul>
+<h2 id="mcmc">MCMC</h2>
+<ul>
+<li>sampling from posterior / complicated distributions</li>
+<li>other similar techniques - importance / acceptance-rejection sampling, inverse CDF</li>
+</ul>
+<p>most are similar with different loss functions</p>
+<h2 id="how-to-cut-between-two-populations">how to cut between two populations</h2>
+<p>define the cut by:</p>
+<ul>
+<li>parametrization 1 hyperplane: <span class="math">0 = ∑ <sub><em>i</em> = 1</sub><sup><em>N</em></sup><em>β</em><sub><em>i</em></sub><em>x</em><sub><em>i</em></sub> + <em>β</em><sub>0</sub></span> or</li>
+<li>parametrization 2 line: <span class="math">0 = <em>a</em> + <em>b</em> <em>x</em></span></li>
+</ul>
+<h2 id="maximum-marginal-problem">Maximum marginal problem</h2>
+<ul>
+<li>loss function of SVM is very similar to logistic regression</li>
+<li>margins between several choices of cut-off lines or what 's called support<br /></li>
+<li>convex optimization - no local minima / maxima</li>
+<li>optimize the <span class="math"><em>β</em><sub><em>i</em></sub></span> for the margin (distances between the two populations) to be as wide as possible<br /></li>
+<li><p>distances (<span class="math"><em>s⃗</em></span>) of point p to the hyperplane (defined uniquely by its normal vector <span class="math"><em>β⃗</em></span> ) <br /><span class="math"><em>s⃗</em> = <em>p⃗</em> ⋅ <em>β⃗</em> / ∣<em>β⃗</em>∣</span><br /></p></li>
+<li>constraint 1 : but we want to get rid of the magnitude of <span class="math">∣<em>β⃗</em>∣</span> and maximize that</li>
+<li><p>constraint 2: <span class="math">∑ <em>β</em><sub><em>i</em></sub><sup>2</sup> = 1</span></p></li>
+</ul>
+<p>Optimize margin M such that</p>
+<p><span class="math"><em>y</em><sub><em>i</em></sub>(∑ <sub><em>i</em> = 1</sub><em>β</em><sub><em>i</em></sub><em>x</em><sub><em>i</em></sub> + <em>β</em><sub>0</sub>) ≥ <em>M</em></span></p>
+<p>Or rewrite the above eqn to allow wiggle room <span class="math"><em>f</em>(<em>x</em>) = (∑ <sub><em>i</em> = 1</sub><em>β</em><sub><em>i</em></sub><em>x</em><sub><em>i</em></sub> + <em>β</em><sub>0</sub>) &gt; 0</span> y = 1</p>
+<p><span class="math"><em>f</em>(<em>x</em>) = (∑ <sub><em>i</em> = 1</sub><em>β</em><sub><em>i</em></sub><em>x</em><sub><em>i</em></sub> + <em>β</em><sub>0</sub>) &lt; 0</span> y = -1 (The way I write the summation seems a little weird ...)</p>
+<p><span class="math"><em>y</em><sub><em>i</em></sub> <em>f</em>(<em>x</em><sub><em>i</em></sub>) ≥ <em>M</em>(1 − <em>ε</em><sub><em>i</em></sub>)</span></p>
+<p>where <span class="math"><em>ε</em><sub><em>i</em></sub> &gt; 0</span> for i = 1,...,n <span class="math">∑ <sub><em>i</em></sub><sup><em>n</em></sup><em>ε</em><sub><em>i</em></sub> &lt; <em>c</em><em>o</em><em>n</em><em>s</em><em>t</em><em>a</em><em>n</em><em>t</em></span> where the constant is a tuning parameter.<br />if want clean separation make constant = 0 or if we are more tolerant , make constant large</p>
+<ul>
+<li>every point within the margin are supports</li>
+</ul>
+<h2 id="steps-to-find-tuning-parameter">steps to find tuning parameter</h2>
+<ul>
+<li>optimize it out - may overfit</li>
+<li>do cross validation</li>
+<li>this is called bias - variance trade-off</li>
+</ul>
+<h2 id="redo-problem-with-support-vector-something-machine-classifier">Redo problem with Support Vector Something (Machine, classifier?)</h2>
+<p>this time - maximize margins and allow a few points to be on the wrong side of the line if <span class="math"><em>ε</em> &gt; 1</span> - the points will be on the wrong side</p>
+<ul>
+<li>KNN needs to keep all data around - SVM doesn't have to</li>
+</ul>
+<p>Can rewrite <span class="math"><em>f</em>(<em>x</em><sub><em>i</em></sub>) = <em>β</em> + ∑ <sub><em>i</em></sub><sup><em>N</em></sup><em>α</em><sub><em>i</em></sub> &lt; <em>x</em><sub><em>i</em></sub><em>x</em><sub><em>j</em></sub> &gt; </span> where <span class="math"> &lt;  &gt; </span> represents the inner product</p>
+<ul>
+<li><p><span class="math"><em>α</em><sub><em>i</em></sub> = 0</span> for a lot of i we need to know where <span class="math"><em>α</em><sub><em>i</em></sub> ≠ 0</span></p></li>
+<li><p>non zero <span class="math"><em>α</em><sub><em>i</em></sub></span> correspond to the actual support vectors! can get the support vectors when we do optimization.</p></li>
+<li>can replace the inner product metric with more complicated ones e.g. <span class="math"><em>K</em>(<em>x</em><sub><em>i</em></sub>, <em>x</em><sub><em>j</em></sub>) = (1 + ∑ <em>x</em><sub><em>i</em></sub><em>x</em><sub><em>j</em></sub>)<sup><em>d</em></sup></span></li>
+<li><p>multi-dimensional scaling - dimension reduction</p></li>
+</ul>
+<p>Radial basis - <span class="math"><em>e</em><em>x</em><em>p</em>( − <em>d</em>(∣<em>x</em> − <em>x</em><sub><em>i</em></sub>∣<sup>2</sup>)</span></p>
+<h2 id="how-to-generalize-to-classify-k-classes">how to generalize to classify K classes</h2>
+<p>assume ABCD... classes</p>
+<ul>
+<li>approach 1)
+<ul>
+<li>only use SVM to classify into two classes, grouping ABD then C</li>
+<li>then repeat SVM for ABD</li>
+<li>greedy algorithm</li>
+<li>one-versus-all-the-others.....</li>
+</ul></li>
+<li>approach 2)
+<ul>
+<li>A, BCD or B, ACD or C, BAD etc.</li>
+<li>can take a vote</li>
+<li>or pick largest <span class="math"><em>f</em><sub><em>β</em></sub>(<em>x</em>)</span></li>
+<li>ensemble approach</li>
+<li>not greedy<br /></li>
+<li>can also weight the votes</li>
+</ul></li>
+</ul>
+<h2 id="recommended-reading">Recommended reading</h2>
+<ul>
+<li>Elements of statistical learning</li>
+<li>pattern recognition and machine learning - Christopher M. Bishop</li>
+<li>Kernel Methods for Pattern Analysis - J. Shawe-Taylor and N. Cristiani<br /></li>
+<li>Elements of statistical learning for dummies<br /></li>
+<li>Kevin Murphy Machine Learning: A Probabilistic Perspective- machine learning book discusses about different kernels</li>
+</ul>

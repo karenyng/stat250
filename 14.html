@@ -1,0 +1,60 @@
+<h1 id="lecture-14---web-scraping">Lecture 14 - Web Scraping</h1>
+<p>Next homework - machine learning stuff <a href="http://www.kaggle.com/c/predict-closed-questions-on-stack-overflow">http://www.kaggle.com/c/predict-closed-questions-on-stack-overflow</a></p>
+<h2 id="how-to-download-data-to-remote-machine-with-login-screen">How to download data to remote machine with login screen</h2>
+<ul>
+<li>cookie - signature of the user -<br />get data <a href="http://www.kaggle.com/c/predict-closed-questions-on-stack-overflow/data">http://www.kaggle.com/c/predict-closed-questions-on-stack-overflow/data</a> open developer tools on firefox and examine the cookie information - then copy the cookie over to remote machine then can use wget</li>
+</ul>
+<p>curl -v -L --cookie 'cookie' 'linkLocationForloginToGetdata' &gt; dataFileName</p>
+<h2 id="how-to-unzip-7zip-file">How to unzip 7zip file</h2>
+<p>use the command $7z or what 's called p7zip when you try to download it</p>
+<h2 id="stackoverflow-questions---not-a-real-question-not-constructive-etc.">StackOverFlow questions - not a real question? not constructive? etc.</h2>
+<ul>
+<li>should content of the question tell you if it is a valid question or</li>
+<li>not? NLP!</li>
+<li>stemming - identify words that are the same but in different tense etc.</li>
+<li>can do Naive Bayes</li>
+<li>also have to get rid of the markdown symbols - knitr might be able to help</li>
+</ul>
+<h2 id="open-nlp">Open NLP</h2>
+<ul>
+<li>Java library for doing NLP</li>
+<li>can call Java code within R</li>
+</ul>
+<h2 id="how-to-read-html-table-from-the-web">How to read html table from the web</h2>
+<p>In R, use the function * readHTMLTable(URL, ) from the XML package There is a column class for striping the data in the proper type<br />If there is an annoying comma separating the numbers every 3 digit, use * gsub()</p>
+<h2 id="html-tags">html tags</h2>
+<ul>
+<li>th - table headers</li>
+<li>tr - table row</li>
+<li>td - table data</li>
+</ul>
+<h2 id="commands">Commands</h2>
+<ul>
+<li>r = xmlRoot(doc)</li>
+<li>xmlName(r) &lt;- tells you what type of file it is Other relevant packages: ----------</li>
+<li>RHTMLForms</li>
+<li>RCurl</li>
+<li>RJSON</li>
+<li>RJSONIO</li>
+</ul>
+<h2 id="webscraping---how-to-find-a-table-from-a-html-file">Webscraping - How to find a table from a html file</h2>
+<p>#XPATH - a path through the html tree<br />* xmlName() * xmlSize() * xmlSApply()</p>
+<p>Want to get the ahref tags so that we can pull some links for downloading the 7zip data file from stackoverflow website * getNodeSet(filename, &quot;//a[start-with, [ahref]' and ancestor::table]&quot;) &lt;- not exact syntax<br />* can place condition in a sideway direction, upwards the html tree-like structure etc.</p>
+<ul>
+<li>a table in a website could be styled by a CSS</li>
+</ul>
+<p>Parse a html document &gt; page &lt;- htmlParse(URL)</p>
+<p>get javascript code from the parsed document<br />jscode = getNodeSet(page, &quot;//script&quot;)</p>
+<p>jscode - 2 types<br />* inline code<br />* has to be downloaded from server</p>
+<p>uuid - universally unique id</p>
+<p>RCurl function * getURLContent(URL, binary = FALSE, verbose = TRUE)</p>
+<h2 id="http-1.1-dialect-code-for-using-rcurl">HTTP 1.1 dialect code for using RCurl</h2>
+<p>server response 200 -succeeded 404 - not found 500 - server internal error 300 - we saw it ...</p>
+<h2 id="r-commands">R commands</h2>
+<p>If we have some txt string read.csv can read from a connection &gt; read.csv(textConnection(txt))</p>
+<h2 id="recommended-reading">Recommended Reading</h2>
+<ul>
+<li>XPATH O'relly book - 2 chpts relevant</li>
+<li>reader.R from stat250 repository</li>
+</ul>
+<p>Most of the lecture can be found in chpt 1 of * XML and Web Technologies for Data Science with R <a href="http://www.springer.com/statistics/computational+statistics/book/978-1-4614-7899-7">http://www.springer.com/statistics/computational+statistics/book/978-1-4614-7899-7</a></p>

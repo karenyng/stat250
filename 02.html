@@ -1,0 +1,4 @@
+<h1 id="lecture-2-01092014---read-large-amount-of-csv">Lecture 2 01/09/2014 - read large amount of CSV</h1>
+<p>Possibilities for assignment: * R - one line at a time * R - one block at a time * shell - frequency table, then use R to compute<br />* use Python - one line at a time * use Python pandas * use Python numbas? * use low level languages either C/C++ or Java * Rcpp can do garbage collecting * Do it in relational database</p>
+<p>Challenge accepted! * maybe use Duncan's package......: FastCSVSample (~6 times faster than read blocks in R)</p>
+<p>'''{r} # make a file connection con = open(&quot;file&quot;, &quot;r&quot;) # compute how many lines to skip with delta readlines(con, delta[i])[delta[i]] '''</p>

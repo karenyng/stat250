@@ -1,0 +1,52 @@
+<h1 id="lecture-7">Lecture 7</h1>
+<h2 id="parallel-computing-as-homework-......">Parallel computing as homework ......</h2>
+<p>Can compute distance metric instead to be more interesting * MapReduce * threads * have to fix C code or so ...</p>
+<h2 id="preprocessor-define-functions">preprocessor define functions</h2>
+<ul>
+<li>type independent code....<br /></li>
+<li><p>gcc -Wall # compiler option - give me all the warnings that you can</p></li>
+<li>R CMD COMPILE mcmc.c # compile C code<br /></li>
+<li><p>R CMD SHLIB mcmc.c # link the libraries</p></li>
+</ul>
+<h2 id="if-in-r-package">If in R package</h2>
+<p>useDynLib(mcmc) # in NAMESPACE file</p>
+<h2 id="in-r---debug-c-code">In R - debug C code</h2>
+<p>debug(mcmc) trace(mcmc) # both are similar</p>
+<blockquote>
+<p>n # steps through the code</p>
+</blockquote>
+<h2 id="how-to-debug-the-code">How to debug the code</h2>
+<ul>
+<li>Don't? go old school and add print statements to check all the inputs of C</li>
+<li>R -d gdb # ask R to run gdb<br /></li>
+<li>where</li>
+<li>c # continue</li>
+<li>up # step up</li>
+<li>print # print</li>
+<li>have to turn on the random number generator first runif(1)</li>
+</ul>
+<h1 id="no-random-seed-in-r-have-to-initialize-it-.random.seed">no random seed in R have to initialize it #.Random.seed</h1>
+<ul>
+<li><p>to do sanity check of code: set same random seed to to do sanity check see if results agree with previous runs</p></li>
+<li><p>.Random.seed = startingSeed # if parallelizing then may have to set different seeds</p></li>
+</ul>
+<h2 id="paralleling-in-r">paralleling in R</h2>
+<p>library(parallel) * reference parallel R # O'Relly book</p>
+<h2 id="relevant-commands">Relevant commands</h2>
+<ul>
+<li>makecluster</li>
+<li>unclass</li>
+<li>clustercall</li>
+<li>nextRNGStream # random number generator stream</li>
+<li>clustercall(cl, library, &quot;MASS&quot;, character.only = TRUE) # load library in</li>
+<li>the entire cluster</li>
+<li>lazy evaluation</li>
+</ul>
+<h2 id="be-careful-what-is-being-sent-to-the-cluster-and-what-is-local">Be careful what is being sent to the cluster and what is local</h2>
+<ul>
+<li>clusterEvalQ(cl, runif(n)) # this is going to throw runif(n) to the cluster node and</li>
+<li>clusterEval(cl, runif, n)<br /></li>
+<li>forking model only make copies when the copy changed</li>
+<li>clusterApply ?</li>
+<li>clusterApplyLB # load balancing</li>
+</ul>
