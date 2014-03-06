@@ -1,22 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="504pt" height="504pt" viewBox="0 0 504 504" version="1.1" id="map">
-<script type="text/javascript">
-	document.getElementById("map").addEventListener("click", sendClickToParentDocument, false);
-	function sendClickToParentDocument(evt)
-	{
-	// this is taken from http://xn--dahlstrm-t4a.net/svg/html/from-svg-to-parent-html-script.html
-	// SVGElementInstance objects aren't normal DOM nodes, so fetch the corresponding 'use' element instead
-			var target = evt.target;
-//			if(target.correspondingUseElement)
-//				target = target.correspondingUseElement;
-      
-      // call a method in the parent document if it exists
-      	if (window.parent.showPlot)
-		window.parent.showPlot(target);
-	else
-	alert("You clicked '" + target.id + "' which is a " + target.nodeName + " element");
-	}
-</script>
 <defs>
 <clipPath id="clip1">
   <path d="M 292 254 L 420.433594 254 L 420.433594 344 L 292 344 Z "/>
@@ -82,7 +65,7 @@
 <g id="surface1">
 <rect x="0" y="0" width="504" height="504" style="fill:rgb(100%,100%,100%);fill-opacity:1;stroke:none;"/>
 <g clip-path="url(#clip1)" clip-rule="nonzero" id="Marin">
-<path style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,0%,0%);fill-opacity:1;" d="M 420.546875 338.679688 L 355.324219 338.679688 L 353.488281 342.15625 L 348.894531 343.316406 L 344.304688 339.839844 L 344.304688 336.359375 L 336.953125 334.042969 L 325.011719 325.925781 L 318.582031 305.058594 L 313.992188 294.625 L 306.640625 287.667969 L 298.375 281.871094 L 292.863281 276.074219 L 293.78125 267.957031 L 292.863281 264.480469 L 292.863281 254.046875 L 304.804688 261.003906 L 307.5625 270.277344 L 315.828125 270.277344 L 317.664062 276.074219 L 329.605469 276.074219 L 338.792969 281.871094 L 339.710938 293.464844 L 402.171875 272.59375 L 408.605469 271.4375 L 408.605469 327.085938 L 416.871094 329.40625 Z " onclick="sendClickToParentDocument('Marin');"/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,0%,0%);fill-opacity:1;" d="M 420.546875 338.679688 L 355.324219 338.679688 L 353.488281 342.15625 L 348.894531 343.316406 L 344.304688 339.839844 L 344.304688 336.359375 L 336.953125 334.042969 L 325.011719 325.925781 L 318.582031 305.058594 L 313.992188 294.625 L 306.640625 287.667969 L 298.375 281.871094 L 292.863281 276.074219 L 293.78125 267.957031 L 292.863281 264.480469 L 292.863281 254.046875 L 304.804688 261.003906 L 307.5625 270.277344 L 315.828125 270.277344 L 317.664062 276.074219 L 329.605469 276.074219 L 338.792969 281.871094 L 339.710938 293.464844 L 402.171875 272.59375 L 408.605469 271.4375 L 408.605469 327.085938 L 416.871094 329.40625 Z " onclick="parent.showPlot('Marin');"/>
 </g>
 <g clip-path="url(#clip2)" clip-rule="nonzero">
 <path style="fill:none;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 420.546875 338.679688 L 355.324219 338.679688 L 353.488281 342.15625 L 348.894531 343.316406 L 344.304688 339.839844 L 344.304688 336.359375 L 336.953125 334.042969 L 325.011719 325.925781 L 318.582031 305.058594 L 313.992188 294.625 L 306.640625 287.667969 L 298.375 281.871094 L 292.863281 276.074219 L 293.78125 267.957031 L 292.863281 264.480469 L 292.863281 254.046875 L 304.804688 261.003906 L 307.5625 270.277344 L 315.828125 270.277344 L 317.664062 276.074219 L 329.605469 276.074219 L 338.792969 281.871094 L 339.710938 293.464844 L 402.171875 272.59375 L 408.605469 271.4375 L 408.605469 327.085938 L 416.871094 329.40625 Z "/>
